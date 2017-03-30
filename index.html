@@ -1,0 +1,71 @@
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>VR Nav</title>
+  <script src="aframe.js"></script>
+</head>
+<body>
+<a-scene>
+  <a-camera position="0 0 0" rotation="0 111 0">
+    <a-cursor color="#4CC3D9" fuse="true"></a-cursor>
+  </a-camera>
+ 
+  <a-circle class="hover" material="transparent: true" position="-13 1 -1" rotation="0 90 0" visible="true" src="https://cdn3.iconfinder.com/data/icons/user-interface-13/32/604-128.png">
+  </a-circle>
+  <a-circle class="hover" material="transparent: true" position="13 1.5 0" rotation="0 -90 0" visible="false" src="https://cdn3.iconfinder.com/data/icons/user-interface-13/32/604-128.png">
+  </a-circle>
+  
+  <a-sky material="opacity: 1" src="https://raw.githubusercontent.com/David329/Crymsoft/master/img/street1-iloveimg-resized.jpg"></a-sky>
+</a-scene>
+<!--Imagen1: https://raw.githubusercontent.com/David329/Crymsoft/master/img/street1-iloveimg-resized.jpg
+Imagen2: https://raw.githubusercontent.com/David329/Crymsoft/master/img/street2-iloveimg-resized.jpg
+gif: http://www.desarrollolibre.net/public/images/preloader_1.gif
+-->
+<script>
+var sceneEl = document.querySelector('a-scene');
+var hoverEls = sceneEl.querySelectorAll('.hover');
+var contador=0;
+for(var i = 0; i < hoverEls.length; i++) {
+    var hoverEl = hoverEls[i];
+    hoverEl.addEventListener('raycaster-intersected', function(evt) {
+        contador++;
+        console.log(contador.toString());
+        if(contador==1){evt.target.setAttribute('scale','1.1 1.1 1.1');}
+        else if(contador==3)evt.target.setAttribute('scale','1.3 1.3 1.3');
+        else if(contador==5)evt.target.setAttribute('scale','1.5 1.5 1.5');
+        else if(contador==7)evt.target.setAttribute('scale','1.7 1.7 1.7');
+        else if(contador==9)evt.target.setAttribute('scale','1.9 1.9 1.9');
+        else if(contador==11)evt.target.setAttribute('scale','2.1 2.1 2.1');
+        else if(contador==13)evt.target.setAttribute('scale','2.3 2.3 2.3');
+        else if(contador==15)
+        {evt.target.setAttribute('scale','2.5 2.5 2.5');david(evt.target.getAttribute('position'));}
+        //console.log(evt.target.getAttribute("color").toString());
+        // evt.target.setAttribute('src','https://raw.githubusercontent.com/David329/dav2/master/lusho.gif');
+    }, true);
+    hoverEl.addEventListener('raycaster-intersected-cleared', function(evt) {
+      contador=0;
+      evt.target.setAttribute('src','');
+      evt.target.setAttribute('scale','1.0 1.0 1.0');
+    }, true);
+}
+</script>
+  <script>
+    function david(data)
+    { 
+      var pos=data['x']+" "+data['y']+" "+data['z'];
+      if(pos=="-13 1 -1")
+      {
+      document.getElementsByTagName("a-circle")[0].setAttribute('visible', "false");
+      document.getElementsByTagName("a-circle")[1].setAttribute('visible', "true");
+      document.getElementsByTagName("a-sky")[0].setAttribute('src','https://raw.githubusercontent.com/David329/Crymsoft/master/img/street2-iloveimg-resized.jpg');
+      }
+      else if(pos=="13 1.5 0")
+      {
+      document.getElementsByTagName("a-circle")[0].setAttribute('visible', "true");
+      document.getElementsByTagName("a-circle")[1].setAttribute('visible', "false");
+      document.getElementsByTagName("a-sky")[0].setAttribute('src','https://raw.githubusercontent.com/David329/Crymsoft/master/img/street1-iloveimg-resized.jpg');
+      }
+    }
+  </script>
+</body>
+</html>
