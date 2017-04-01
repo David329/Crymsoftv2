@@ -6,21 +6,17 @@
 </head>
 <body>
 <a-scene>
-  <a-camera position="0 0 0" rotation="0 111 0">
+  <a-camera position="0 0 0" rotation="0 0 0">
     <a-cursor color="#4CC3D9" fuse="true"></a-cursor>
   </a-camera>
  
-  <a-circle class="hover" material="transparent: true" position="-13 1 -1" rotation="0 90 0" visible="true" src="https://cdn3.iconfinder.com/data/icons/user-interface-13/32/604-128.png">
+  <a-circle class="hover" material="transparent: true" position="-13 -0.3 -0.5" rotation="0 90 0" visible="true" src="https://cdn3.iconfinder.com/data/icons/user-interface-13/32/604-128.png">
   </a-circle>
-  <a-circle class="hover" material="transparent: true" position="13 1.5 0" rotation="0 -90 0" visible="false" src="https://cdn3.iconfinder.com/data/icons/user-interface-13/32/604-128.png">
+  <a-circle class="hover" material="transparent: true" position="-11 2 -5" rotation="0 60 0" visible="false" src="https://cdn3.iconfinder.com/data/icons/user-interface-13/32/604-128.png">
   </a-circle>
   
-  <a-sky material="opacity: 1" src="https://raw.githubusercontent.com/David329/Crymsoft/master/img/street1-iloveimg-resized.jpg"></a-sky>
+  <a-sky material="opacity: 1" src="https://raw.githubusercontent.com/David329/dav2/master/StreetView%200.jpg"></a-sky>
 </a-scene>
-<!--Imagen1: https://raw.githubusercontent.com/David329/Crymsoft/master/img/street1-iloveimg-resized.jpg
-Imagen2: https://raw.githubusercontent.com/David329/Crymsoft/master/img/street2-iloveimg-resized.jpg
-gif: http://www.desarrollolibre.net/public/images/preloader_1.gif
--->
 <script>
 var sceneEl = document.querySelector('a-scene');
 var hoverEls = sceneEl.querySelectorAll('.hover');
@@ -38,7 +34,9 @@ for(var i = 0; i < hoverEls.length; i++) {
         else if(contador==11)evt.target.setAttribute('scale','2.1 2.1 2.1');
         else if(contador==13)evt.target.setAttribute('scale','2.3 2.3 2.3');
         else if(contador==15)
-        {evt.target.setAttribute('scale','2.5 2.5 2.5');david(evt.target.getAttribute('position'));}
+        {evt.target.setAttribute('scale','2.5 2.5 2.5');
+        document.getElementsByTagName("a-camera")[0].setAttribute('rotation', '0 -90 0');
+        david(evt.target.getAttribute('position'));}
         //console.log(evt.target.getAttribute("color").toString());
         // evt.target.setAttribute('src','https://raw.githubusercontent.com/David329/dav2/master/lusho.gif');
     }, true);
@@ -53,17 +51,17 @@ for(var i = 0; i < hoverEls.length; i++) {
     function david(data)
     { 
       var pos=data['x']+" "+data['y']+" "+data['z'];
-      if(pos=="-13 1 -1")
+      if(pos=="-13 -0.3 -0.5")
       {
       document.getElementsByTagName("a-circle")[0].setAttribute('visible', "false");
       document.getElementsByTagName("a-circle")[1].setAttribute('visible', "true");
-      document.getElementsByTagName("a-sky")[0].setAttribute('src','https://raw.githubusercontent.com/David329/Crymsoft/master/img/street2-iloveimg-resized.jpg');
+      document.getElementsByTagName("a-sky")[0].setAttribute('src','https://raw.githubusercontent.com/David329/dav2/master/StreetView%201.jpg');
       }
-      else if(pos=="13 1.5 0")
+      else if(pos=="-11 2 -5")
       {
       document.getElementsByTagName("a-circle")[0].setAttribute('visible', "true");
       document.getElementsByTagName("a-circle")[1].setAttribute('visible', "false");
-      document.getElementsByTagName("a-sky")[0].setAttribute('src','https://raw.githubusercontent.com/David329/Crymsoft/master/img/street1-iloveimg-resized.jpg');
+      document.getElementsByTagName("a-sky")[0].setAttribute('src','https://raw.githubusercontent.com/David329/dav2/master/StreetView%200.jpg');
       }
     }
   </script>
